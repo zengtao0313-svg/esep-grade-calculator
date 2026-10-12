@@ -119,7 +119,7 @@ func TestPass(t *testing.T) {
 	}
 }
 
-func testFail(t *testing.T) {
+func TestFail(t *testing.T) {
 	gradeCalculator := NewGradeCalculator(true)
 
 	gradeCalculator.AddGrade("assignment", 50, Assignment)
