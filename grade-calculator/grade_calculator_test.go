@@ -100,8 +100,35 @@ func TestEmptyGrades(t *testing.T) {
     gradeCalculator := NewGradeCalculator()
 
     actual_value := gradeCalculator.GetFinalGrade()
-
     if actual_value != "F"{
         t.Errorf("Expected F for empty grades; got %s", actual_value)
     }
+}
+
+func TestPass(t *testing.T) {
+	gradeCalculator := NewGradeCalculator(true)
+
+	gradeCalculator.AddGrade("assignment", 100, Assignment)
+	gradeCalculator.AddGrade("exam", 100, Exam)
+	gradeCalculator.AddGrade("essay", 100, Essay)
+
+	actual_value := gradeCalculator.GetFinalGrade()
+
+	if actual_value != "Pass" {
+		t.Errorf("Expected Pass; got %s", actual_value)
+	}
+}
+
+func testFail(t *testing.T) {
+	gradeCalculator := NewGradeCalculator(true)
+
+	gradeCalculator.AddGrade("assignment", 50, Assignment)
+	gradeCalculator.AddGrade("exam", 50, Exam)
+	gradeCalculator.AddGrade("essay", 50, Essay)
+
+	actual_value := gradeCalculator.GetFinalGrade()
+
+	if actual_value != "Fail" {
+		t.Errorf("Expected Fail; got %s", actual_value)
+	}
 }
